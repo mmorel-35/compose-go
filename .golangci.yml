@@ -8,6 +8,7 @@ linters:
   - gocritic
   - gofmt
   - goimports
+  - gomodguard
   - gosimple
   - govet
   - ineffassign
@@ -26,3 +27,10 @@ linters-settings:
       - paramTypeCombine
       - unnamedResult
       - whyNoLint
+  gomodguard:
+    blocked:
+      modules:
+      - github.com/pkg/errors:
+          recommendations:
+          - errors
+          - fmt
