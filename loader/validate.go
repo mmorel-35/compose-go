@@ -90,7 +90,7 @@ func checkConsistency(project *types.Project) error {
 		if s.Build != nil {
 			for _, secret := range s.Build.Secrets {
 				if _, ok := project.Secrets[secret.Source]; !ok {
-					return fmt.Errorf("service %q refers to undefined build secret %s: %w", s.Name, secret.Source, errdefs.ErrInvalid))
+					return fmt.Errorf("service %q refers to undefined build secret %s: %w", s.Name, secret.Source, errdefs.ErrInvalid)
 				}
 			}
 		}
