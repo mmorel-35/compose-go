@@ -18,6 +18,7 @@ package dotenv
 
 import (
 	"bytes"
+	"fmt"
 	"os"
 	"path/filepath"
 
@@ -36,7 +37,7 @@ func GetEnvFromFile(currentEnv map[string]string, filenames []string) (map[strin
 
 		s, err := os.Stat(dotEnvFile)
 		if os.IsNotExist(err) {
-			return envMap, errors.Errorf("Couldn't find env file: %s", dotEnvFile)
+			return envMap, fmt.Errorf("Couldn't find env file: %s", dotEnvFile)
 		}
 		if err != nil {
 			return envMap, err
@@ -46,12 +47,12 @@ func GetEnvFromFile(currentEnv map[string]string, filenames []string) (map[strin
 			if len(filenames) == 0 {
 				return envMap, nil
 			}
-			return envMap, errors.Errorf("%s is a directory", dotEnvFile)
+			return envMap, fmt.Errorf("%s is a directory", dotEnvFile)
 		}
 
 		b, err := os.ReadFile(dotEnvFile)
 		if os.IsNotExist(err) {
-			return nil, errors.Errorf("Couldn't read env file: %s", dotEnvFile)
+			return nil, fmt.Errorf("Couldn't read env file: %s", dotEnvFile)
 		}
 		if err != nil {
 			return envMap, err
@@ -66,7 +67,7 @@ func GetEnvFromFile(currentEnv map[string]string, filenames []string) (map[strin
 			return v, ok
 		})
 		if err != nil {
-			return envMap, errors.Wrapf(err, "failed to read %s", dotEnvFile)
+			return envMap, fmt.Errorf("failed to read %s: %w", dotEnvFile, err)
 		}
 		for k, v := range env {
 			envMap[k] = v
