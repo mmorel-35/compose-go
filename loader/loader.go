@@ -19,6 +19,7 @@ package loader
 import (
 	"bytes"
 	"context"
+	"errors"
 	"fmt"
 	"io"
 	"os"
@@ -39,7 +40,6 @@ import (
 	"github.com/compose-spec/compose-go/v2/types"
 	"github.com/compose-spec/compose-go/v2/validation"
 	"github.com/mitchellh/mapstructure"
-	"github.com/pkg/errors"
 	"gopkg.in/yaml.v3"
 )
 
