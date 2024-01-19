@@ -343,7 +343,7 @@ func loadYamlModel(ctx context.Context, config types.ConfigDetails, opts *Option
 				var raw interface{}
 				processor := &ResetProcessor{target: &raw}
 				err := decoder.Decode(processor)
-				if err == io.EOF {
+				if err != nil && errors.Is(err, io.EOF) {
 					break
 				}
 				if err != nil {
