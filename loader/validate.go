@@ -17,6 +17,7 @@
 package loader
 
 import (
+	"errors"
 	"fmt"
 	"strings"
 
