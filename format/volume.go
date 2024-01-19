@@ -17,6 +17,7 @@
 package format
 
 import (
+	"errors"
 	"fmt"
 	"strings"
 	"unicode"
