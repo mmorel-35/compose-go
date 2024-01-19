@@ -17,11 +17,12 @@
 package interpolation
 
 import (
+	"errors"
+	"fmt"
 	"os"
 
 	"github.com/compose-spec/compose-go/v2/template"
 	"github.com/compose-spec/compose-go/v2/tree"
-	"github.com/pkg/errors"
 )
 
 // Options supported by Interpolate
