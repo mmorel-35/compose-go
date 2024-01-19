@@ -56,7 +56,7 @@ func checkConsistency(project *types.Project) error {
 		}
 		for network := range s.Networks {
 			if _, ok := project.Networks[network]; !ok {
-				return fmt.Errorf("service %q refers to undefined network %s: %w", s.Name, network,  errdefs.ErrInvalid)
+				return fmt.Errorf("service %q refers to undefined network %s: %w", s.Name, network, errdefs.ErrInvalid)
 			}
 		}
 
@@ -120,7 +120,7 @@ func checkConsistency(project *types.Project) error {
 			if s.Scale == nil {
 				attr = "deploy.replicas"
 			}
-			return fmt.Errorf("services.%s: can't set container_name and %s as container name must be unique", attr,
+			return fmt.Errorf("services.%s: can't set container_name and %s as container name must be unique: %w", attr,
 				s.Name, errdefs.ErrInvalid)
 		}
 	}
