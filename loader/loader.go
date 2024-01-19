@@ -226,7 +226,7 @@ func parseYAML(decoder *yaml.Decoder) (map[string]interface{}, PostProcessor, er
 	}
 	cfgMap, ok := cfg.(map[interface{}]interface{})
 	if !ok {
-		return nil, nil, errors.Errorf("Top-level object must be a mapping")
+		return nil, nil, errors.New("Top-level object must be a mapping")
 	}
 	converted, err := convertToStringKeysRecursive(cfgMap, "")
 	if err != nil {
