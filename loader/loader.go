@@ -244,7 +244,7 @@ func Load(configDetails types.ConfigDetails, options ...func(*Options)) (*types.
 // LoadWithContext reads a ConfigDetails and returns a fully loaded configuration
 func LoadWithContext(ctx context.Context, configDetails types.ConfigDetails, options ...func(*Options)) (*types.Project, error) {
 	if len(configDetails.ConfigFiles) < 1 {
-		return nil, errors.Errorf("No files specified")
+		return nil, errors.New("No files specified")
 	}
 
 	opts := &Options{
@@ -399,7 +399,7 @@ func load(ctx context.Context, configDetails types.ConfigDetails, opts *Options,
 	for _, f := range loaded {
 		if f == mainFile {
 			loaded = append(loaded, mainFile)
-			return nil, errors.Errorf("include cycle detected:\n%s\n include %s", loaded[0], strings.Join(loaded[1:], "\n include "))
+			return nil, fmt.Errorf("include cycle detected:\n%s\n include %s", loaded[0], strings.Join(loaded[1:], "\n include "))
 		}
 	}
 	loaded = append(loaded, mainFile)
@@ -689,7 +689,7 @@ func formatInvalidKeyError(keyPrefix string, key interface{}) error {
 	} else {
 		location = fmt.Sprintf("in %s", keyPrefix)
 	}
-	return errors.Errorf("Non-string key %s: %#v", location, key)
+	return fmt.Errorf("Non-string key %s: %#v", location, key)
 }
 
 // Windows path, c:\\my\\path\\shiny, need to be changed to be compatible with
