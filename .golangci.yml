@@ -1,6 +1,6 @@
-run:
-  deadline: 2m
-
+issues:
+  max-issues-per-linter: 0
+  max-same-issues: 0
 linters:
   disable-all: true
   enable:
@@ -34,3 +34,5 @@ linters-settings:
           recommendations:
           - errors
           - fmt
+run:
+  timeout: 2m
