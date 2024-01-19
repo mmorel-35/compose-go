@@ -592,7 +592,7 @@ func (p Project) WithServicesEnvironmentResolved(discardEnvFiles bool) (*Project
 
 			fileVars, err := dotenv.ParseWithLookup(bytes.NewBuffer(b), resolve)
 			if err != nil {
-				return nil, fmt.Errorf("failed to read %s", envFile.Path, err)
+				return nil, fmt.Errorf("failed to read %s: %w", envFile.Path, err)
 			}
 			environment.OverrideBy(Mapping(fileVars).ToMappingWithEquals())
 		}
