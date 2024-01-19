@@ -17,6 +17,7 @@
 package interpolation
 
 import (
+	"errors"
 	"fmt"
 	"os"
 
@@ -113,13 +114,14 @@ func recursiveInterpolate(value interface{}, path tree.Path, opts Options) (inte
 }
 
 func newPathError(path tree.Path, err error) error {
-	switch err := err.(type) {
-	case nil:
+	var ite *template.InvalidTemplateError
+	switch {
+	case err == nil:
 		return nil
-	case *template.InvalidTemplateError:
+	case errors.As(err, &ite):
 		return fmt.Errorf(
 			"invalid interpolation format for %s.\nYou may need to escape any $ with another $.\n%s",
-			path, err.Template)
+			path, ite.Template)
 	default:
 		return fmt.Errorf("error while interpolating %s: %w", path, err)
 	}
