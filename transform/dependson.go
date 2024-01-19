@@ -49,6 +49,6 @@ func transformDependsOn(data any, p tree.Path) (any, error) {
 		}
 		return d, nil
 	default:
-		return data, errors.Errorf("%s: invalid type %T for depend_on", p, v)
+		return data, fmt.Errorf("%s: invalid type %T for depend_on", p, v)
 	}
 }
