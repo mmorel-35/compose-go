@@ -4,15 +4,16 @@ run:
 linters:
   disable-all: true
   enable:
+  - errorlint
   - gocritic
   - gofmt
   - goimports
-  - revive
   - gosimple
+  - govet
   - ineffassign
   - misspell
   - nakedret
-  - govet
+  - revive
 linters-settings:
   gocritic:
     # Enable multiple checks by tags, run `GL_DEBUG=gocritic golangci-lint run` to see all tags and checks.
