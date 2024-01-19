@@ -18,7 +18,7 @@ package transform
 
 import (
 	"fmt"
-	
+
 	"github.com/compose-spec/compose-go/v2/tree"
 )
 
