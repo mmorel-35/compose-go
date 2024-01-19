@@ -21,8 +21,6 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
-
-	"github.com/pkg/errors"
 )
 
 func GetEnvFromFile(currentEnv map[string]string, filenames []string) (map[string]string, error) {
