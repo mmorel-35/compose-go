@@ -121,10 +121,7 @@ func newPathError(path tree.Path, err error) error {
 			"invalid interpolation format for %s.\nYou may need to escape any $ with another $.\n%s",
 			path, err.Template)
 	default:
-		if err != nil {
-			return fmt.Errorf("error while interpolating %s: %w", path, err)
-		}
-		return nil
+		return fmt.Errorf("error while interpolating %s: %w", path, err)
 	}
 }
 
