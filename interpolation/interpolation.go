@@ -17,7 +17,6 @@
 package interpolation
 
 import (
-	"errors"
 	"fmt"
 	"os"
 
