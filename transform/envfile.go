@@ -17,8 +17,9 @@
 package transform
 
 import (
+	"errors"
+
 	"github.com/compose-spec/compose-go/v2/tree"
-	"github.com/pkg/errors"
 )
 
 func transformEnvFile(data any, p tree.Path) (any, error) {
