@@ -17,11 +17,11 @@
 package validation
 
 import (
+	"errors"
 	"fmt"
 	"strings"
 
 	"github.com/compose-spec/compose-go/v2/tree"
-	"github.com/pkg/errors"
 )
 
 type checkerFunc func(value any, p tree.Path) error
