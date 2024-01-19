@@ -17,7 +17,7 @@
 package transform
 
 import (
-	"errors"
+	"fmt"
 
 	"github.com/compose-spec/compose-go/v2/tree"
 )
@@ -31,6 +31,6 @@ func transformUlimits(data any, p tree.Path) (any, error) {
 			"single": v,
 		}, nil
 	default:
-		return data, errors.Errorf("%s: invalid type %T for external", p, v)
+		return data, fmt.Errorf("%s: invalid type %T for external", p, v)
 	}
 }
