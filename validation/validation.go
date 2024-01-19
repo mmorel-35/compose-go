@@ -17,7 +17,6 @@
 package validation
 
 import (
-	"errors"
 	"fmt"
 	"strings"
 
@@ -91,7 +90,7 @@ func checkFileObject(keys ...string) checkerFunc {
 func checkPath(value any, p tree.Path) error {
 	v := value.(string)
 	if v == "" {
-		return errors.Errorf("%s: value can't be blank", p)
+		return fmt.Errorf("%s: value can't be blank", p)
 	}
 	return nil
 }
