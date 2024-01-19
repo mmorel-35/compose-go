@@ -17,10 +17,10 @@
 package transform
 
 import (
+	"errors"
 	"fmt"
 
 	"github.com/compose-spec/compose-go/v2/tree"
-	"github.com/pkg/errors"
 )
 
 func transformDependsOn(data any, p tree.Path) (any, error) {
