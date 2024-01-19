@@ -81,7 +81,10 @@ func recursiveInterpolate(value interface{}, path tree.Path, opts Options) (inte
 			return newValue, nil
 		}
 		casted, err := caster(newValue)
-		return casted, newPathError(path, errors.Wrap(err, "failed to cast to expected type"))
+		if err != nil {
+			return casted, newPathError(path, fmt.Errorf("failed to cast to expected type: %w", err))
+		}
+		return casted, nil
 
 	case map[string]interface{}:
 		out := map[string]interface{}{}
@@ -115,11 +118,14 @@ func newPathError(path tree.Path, err error) error {
 	case nil:
 		return nil
 	case *template.InvalidTemplateError:
-		return errors.Errorf(
+		return fmt.Errorf(
 			"invalid interpolation format for %s.\nYou may need to escape any $ with another $.\n%s",
 			path, err.Template)
 	default:
-		return errors.Wrapf(err, "error while interpolating %s", path)
+		if err != nil {
+			return fmt.Errorf("error while interpolating %s: %w", path, err)
+		}
+		return nil
 	}
 }
 
